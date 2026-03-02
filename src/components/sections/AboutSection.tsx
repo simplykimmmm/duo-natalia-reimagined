@@ -61,9 +61,11 @@ export default function AboutSection() {
             </div>
             <div className="lg:col-span-8">
               <SectionReveal delay={100}>
-                <p className="text-foreground text-base leading-relaxed font-light">
-                  {t("about.nvdm.bio")}
-                </p>
+                <div className="text-foreground text-base leading-relaxed font-light space-y-4">
+                  {t("about.nvdm.bio").split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
               </SectionReveal>
             </div>
           </div>
@@ -78,9 +80,11 @@ export default function AboutSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div className="lg:col-span-8 lg:order-1">
               <SectionReveal delay={100}>
-                <p className="text-foreground text-base leading-relaxed font-light">
-                  {t("about.nk.bio")}
-                </p>
+                <div className="text-foreground text-base leading-relaxed font-light space-y-4">
+                  {t("about.nk.bio").split("\n\n").map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
               </SectionReveal>
             </div>
             <div className="lg:col-span-4 lg:order-2">
