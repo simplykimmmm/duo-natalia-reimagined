@@ -1,95 +1,103 @@
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { pressReviews } from "@/lib/pressReviews";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
-
-interface PressReview {
-  quote: Record<string, string>;
-  source: string;
-  year?: string;
-}
-
-const pressReviews: PressReview[] = [
-  {
-    quote: {
-      de: "Ein Duo, das mit seiner außergewöhnlichen musikalischen Harmonie und technischen Brillanz begeistert.",
-      en: "A duo that inspires with its extraordinary musical harmony and technical brilliance.",
-      fr: "Un duo qui inspire par son harmonie musicale extraordinaire et sa brillance technique.",
-    },
-    source: "Luxemburger Wort",
-    year: "2023",
-  },
-  {
-    quote: {
-      de: "Kammermusik auf höchstem Niveau – das Duo Natalia überzeugt mit Leidenschaft, Präzision und einem einzigartigen Zusammenspiel.",
-      en: "Chamber music at the highest level — Duo Natalia convinces with passion, precision and a unique interplay.",
-      fr: "Musique de chambre au plus haut niveau — le Duo Natalia convainc par sa passion, sa précision et une interaction unique.",
-    },
-    source: "Klassik Heute",
-    year: "2022",
-  },
-  {
-    quote: {
-      de: "Die CD 'Magical Russia' ist ein Meisterwerk der Interpretation.",
-      en: "The CD 'Magical Russia' is a masterpiece of interpretation.",
-      fr: "Le CD 'Magical Russia' est un chef-d'œuvre d'interprétation.",
-    },
-    source: "Pizzicato Magazine",
-    year: "2021",
-  },
-  {
-    quote: {
-      de: "Ein Gleichklang des Herzens und des Geistes – selten erlebt man eine solche musikalische Einheit in der Kammermusik.",
-      en: "A unity of heart and mind — rarely does one experience such musical oneness in chamber music.",
-      fr: "Une unité de cœur et d'esprit — rarement vit-on une telle unité musicale dans la musique de chambre.",
-    },
-    source: "Tageblatt",
-    year: "2020",
-  },
-];
+import { ExternalLink } from "lucide-react";
 
 export default function PressSection() {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
+  const [showAll, setShowAll] = useState(false);
+
+  const displayed = showAll ? pressReviews : pressReviews.slice(0, 4);
+
+  const formatDate = (iso: string) => {
+    const d = new Date(iso);
+    return d.toLocaleDateString("de-DE", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
 
   return (
-    <section id="press" className="bg-cream section-padding">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="press" className="bg-forest section-padding relative overflow-hidden">
+      {/* Subtle grain overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjgiLz48L2ZpbHRlcj48cmVjdCBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9IjEiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIi8+PC9zdmc+')]" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionReveal>
           <p className="text-gold text-xs tracking-[0.3em] uppercase mb-4 font-light text-center">
             {t("press.subtitle")}
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-forest text-center mb-4">
+          <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-white text-center mb-4">
             {t("press.title")}
           </h2>
         </SectionReveal>
 
         <GoldDivider className="my-10" />
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {pressReviews.map((review, index) => (
-            <SectionReveal key={index} delay={index * 150}>
-              <div className="group bg-white rounded-2xl p-8 sm:p-10 shadow-sm hover:shadow-lg transition-all duration-500 h-full flex flex-col hover:-translate-y-1">
-                <span className="font-serif text-6xl text-gold/30 leading-none select-none group-hover:text-gold/50 transition-colors duration-500">
-                  &ldquo;
-                </span>
+        <div className="mt-16 space-y-0">
+          {displayed.map((review, index) => (
+            <SectionReveal key={index} delay={index * 100}>
+              <a
+                href={review.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border-b border-white/10 first:border-t py-10 sm:py-12 transition-colors duration-500 hover:bg-white/[0.03]"
+              >
+                <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-12">
+                  {/* Left column: source + date */}
+                  <div className="lg:w-56 shrink-0 flex lg:flex-col items-baseline lg:items-start gap-3 lg:gap-2">
+                    <span className="text-gold font-medium text-sm tracking-wide uppercase">
+                      {review.source}
+                    </span>
+                    <span className="text-white/40 text-xs font-light">
+                      {formatDate(review.date)}
+                    </span>
+                    {review.album && (
+                      <span className="hidden lg:inline-block mt-2 text-xs text-white/25 border border-white/10 rounded-full px-3 py-1">
+                        {review.album}
+                      </span>
+                    )}
+                  </div>
 
-                <blockquote className="mt-2 text-foreground text-base sm:text-lg leading-relaxed font-light italic flex-1">
-                  {review.quote[lang] || review.quote.en}
-                </blockquote>
+                  {/* Quote */}
+                  <div className="flex-1">
+                    <blockquote className="text-white/85 text-lg sm:text-xl lg:text-2xl leading-relaxed font-serif italic">
+                      &ldquo;{review.quote}&rdquo;
+                    </blockquote>
+                    {review.album && (
+                      <span className="lg:hidden inline-block mt-4 text-xs text-white/25 border border-white/10 rounded-full px-3 py-1">
+                        {review.album}
+                      </span>
+                    )}
+                  </div>
 
-                <div className="mt-8 pt-6 border-t border-gold/10">
-                  <p className="text-forest font-medium text-sm">
-                    {review.source}
-                  </p>
-                  {review.year && (
-                    <p className="text-muted-foreground text-xs font-light mt-1">
-                      {review.year}
-                    </p>
-                  )}
+                  {/* Arrow */}
+                  <div className="hidden lg:flex items-center self-center">
+                    <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-gold transition-colors duration-300" />
+                  </div>
                 </div>
-              </div>
+              </a>
             </SectionReveal>
           ))}
         </div>
+
+        {pressReviews.length > 4 && (
+          <SectionReveal delay={500}>
+            <div className="text-center mt-12">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="text-gold text-sm tracking-[0.2em] uppercase font-light border border-gold/30 rounded-full px-8 py-3 hover:bg-gold/10 transition-all duration-300"
+              >
+                {showAll
+                  ? t("press.showLess") || "Weniger anzeigen"
+                  : t("press.showMore") || `Alle ${pressReviews.length} Rezensionen`}
+              </button>
+            </div>
+          </SectionReveal>
+        )}
       </div>
     </section>
   );
