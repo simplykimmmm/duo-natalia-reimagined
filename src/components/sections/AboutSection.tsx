@@ -36,8 +36,8 @@ export default function AboutSection() {
       <div className="relative h-[50vh] overflow-hidden group">
         <img
           src={IMAGES.about}
-          alt="Violin and piano"
-          className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+          alt="Duo Natalia performing together"
+          className="w-full h-full object-cover object-top transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-forest/20 transition-opacity duration-500 group-hover:bg-forest/10" />
       </div>
@@ -49,6 +49,13 @@ export default function AboutSection() {
             <div className="lg:col-span-4">
               <SectionReveal>
                 <div className="lg:sticky lg:top-28">
+                  <div className="aspect-[3/4] rounded-sm overflow-hidden mb-8 shadow-lg">
+                    <img
+                      src={IMAGES.nataliaVdm}
+                      alt="Natalia van der Mersch"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                   <p className="text-gold text-xs tracking-[0.3em] uppercase mb-3 font-light">
                     {t("about.nvdm.role")}
                   </p>
@@ -90,6 +97,13 @@ export default function AboutSection() {
             <div className="lg:col-span-4 lg:order-2">
               <SectionReveal>
                 <div className="lg:sticky lg:top-28">
+                  <div className="aspect-[3/4] rounded-sm overflow-hidden mb-8 shadow-lg">
+                    <img
+                      src={IMAGES.nataliaKovalzon}
+                      alt="Natalia Kovalzon"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
                   <p className="text-gold text-xs tracking-[0.3em] uppercase mb-3 font-light">
                     {t("about.nk.role")}
                   </p>
