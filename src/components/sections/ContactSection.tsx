@@ -2,29 +2,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { IMAGES } from "@/lib/images";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
-import { Mail, Globe, Send } from "lucide-react";
-import { useState, useRef } from "react";
+import { Mail, Globe } from "lucide-react";
 
 export default function ContactSection() {
   const { t } = useLanguage();
-  const [formState, setFormState] = useState<"idle" | "sending" | "sent">("idle");
-  const nameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const name = nameRef.current?.value || "";
-    const email = emailRef.current?.value || "";
-    const message = messageRef.current?.value || "";
-
-    const subject = encodeURIComponent(`Contact from ${name} via duo-natalia.com`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.open(`mailto:k@no-te.com?subject=${subject}&body=${body}`, "_self");
-
-    setFormState("sent");
-    setTimeout(() => setFormState("idle"), 3000);
-  };
 
   return (
     <section id="contact" className="relative overflow-hidden">
@@ -128,57 +109,6 @@ export default function ContactSection() {
               </div>
             </SectionReveal>
 
-            {/* Contact Form */}
-            <SectionReveal delay={400}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-white/50 mb-2 font-light">
-                    {t("contact.form.name")}
-                  </label>
-                  <input
-                    ref={nameRef}
-                    type="text"
-                    required
-                    className="w-full bg-white/5 border border-white/15 rounded-xl px-5 py-3.5 text-white placeholder-white/30 focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30 transition-all duration-300 font-light"
-                    placeholder="..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-white/50 mb-2 font-light">
-                    {t("contact.form.email")}
-                  </label>
-                  <input
-                    ref={emailRef}
-                    type="email"
-                    required
-                    className="w-full bg-white/5 border border-white/15 rounded-xl px-5 py-3.5 text-white placeholder-white/30 focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30 transition-all duration-300 font-light"
-                    placeholder="..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-white/50 mb-2 font-light">
-                    {t("contact.form.message")}
-                  </label>
-                  <textarea
-                    ref={messageRef}
-                    required
-                    rows={5}
-                    className="w-full bg-white/5 border border-white/15 rounded-xl px-5 py-3.5 text-white placeholder-white/30 focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30 transition-all duration-300 font-light resize-none"
-                    placeholder="..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={formState !== "idle"}
-                  className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-gold text-white text-sm tracking-[0.15em] uppercase hover:bg-gold-light disabled:opacity-60 transition-all duration-500"
-                >
-                  <Send className="w-4 h-4" />
-                  {formState === "idle" && t("contact.form.send")}
-                  {formState === "sending" && t("contact.form.sending")}
-                  {formState === "sent" && t("contact.form.success")}
-                </button>
-              </form>
-            </SectionReveal>
           </div>
         </div>
       </div>
