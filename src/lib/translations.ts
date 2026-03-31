@@ -72,6 +72,8 @@ const en: Record<string, string> = {
   "media.videos": "Videos",
   "press.title": "Press Reviews",
   "press.subtitle": "What the critics say",
+  "press.showMore": "Show more",
+  "press.showLess": "Show less",
   "contact.title": "Contact",
   "contact.subtitle": "We look forward to hearing from you",
   "contact.management": "PR Management",
