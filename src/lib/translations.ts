@@ -116,6 +116,8 @@ const fr: Record<string, string> = {
   "media.videos": "Vidéos",
   "press.title": "Revue de presse",
   "press.subtitle": "Ce que disent les critiques",
+  "press.showMore": "Voir plus",
+  "press.showLess": "Voir moins",
   "contact.title": "Contact",
   "contact.subtitle": "Nous nous réjouissons de votre message",
   "contact.management": "Relations publiques",
