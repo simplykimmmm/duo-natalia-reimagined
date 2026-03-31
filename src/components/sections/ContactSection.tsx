@@ -2,29 +2,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { IMAGES } from "@/lib/images";
 import SectionReveal from "@/components/SectionReveal";
 import GoldDivider from "@/components/GoldDivider";
-import { Mail, Globe, Send } from "lucide-react";
-import { useState, useRef } from "react";
+import { Mail, Globe } from "lucide-react";
 
 export default function ContactSection() {
   const { t } = useLanguage();
-  const [formState, setFormState] = useState<"idle" | "sending" | "sent">("idle");
-  const nameRef = useRef<HTMLInputElement>(null);
-  const emailRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const name = nameRef.current?.value || "";
-    const email = emailRef.current?.value || "";
-    const message = messageRef.current?.value || "";
-
-    const subject = encodeURIComponent(`Contact from ${name} via duo-natalia.com`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.open(`mailto:k@no-te.com?subject=${subject}&body=${body}`, "_self");
-
-    setFormState("sent");
-    setTimeout(() => setFormState("idle"), 3000);
-  };
 
   return (
     <section id="contact" className="relative overflow-hidden">
