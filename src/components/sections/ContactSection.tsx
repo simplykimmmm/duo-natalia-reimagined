@@ -128,57 +128,6 @@ export default function ContactSection() {
               </div>
             </SectionReveal>
 
-            {/* Contact Form */}
-            <SectionReveal delay={400}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-white/50 mb-2 font-light">
-                    {t("contact.form.name")}
-                  </label>
-                  <input
-                    ref={nameRef}
-                    type="text"
-                    required
-                    className="w-full bg-white/5 border border-white/15 rounded-xl px-5 py-3.5 text-white placeholder-white/30 focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30 transition-all duration-300 font-light"
-                    placeholder="..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-white/50 mb-2 font-light">
-                    {t("contact.form.email")}
-                  </label>
-                  <input
-                    ref={emailRef}
-                    type="email"
-                    required
-                    className="w-full bg-white/5 border border-white/15 rounded-xl px-5 py-3.5 text-white placeholder-white/30 focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30 transition-all duration-300 font-light"
-                    placeholder="..."
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs tracking-[0.2em] uppercase text-white/50 mb-2 font-light">
-                    {t("contact.form.message")}
-                  </label>
-                  <textarea
-                    ref={messageRef}
-                    required
-                    rows={5}
-                    className="w-full bg-white/5 border border-white/15 rounded-xl px-5 py-3.5 text-white placeholder-white/30 focus:border-gold/50 focus:outline-none focus:ring-1 focus:ring-gold/30 transition-all duration-300 font-light resize-none"
-                    placeholder="..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={formState !== "idle"}
-                  className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-gold text-white text-sm tracking-[0.15em] uppercase hover:bg-gold-light disabled:opacity-60 transition-all duration-500"
-                >
-                  <Send className="w-4 h-4" />
-                  {formState === "idle" && t("contact.form.send")}
-                  {formState === "sending" && t("contact.form.sending")}
-                  {formState === "sent" && t("contact.form.success")}
-                </button>
-              </form>
-            </SectionReveal>
           </div>
         </div>
       </div>
