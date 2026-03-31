@@ -28,6 +28,8 @@ const de: Record<string, string> = {
   "media.videos": "Videos",
   "press.title": "Pressestimmen",
   "press.subtitle": "Was die Kritiker sagen",
+  "press.showMore": "Alle Rezensionen anzeigen",
+  "press.showLess": "Weniger anzeigen",
   "contact.title": "Kontakt",
   "contact.subtitle": "Wir freuen uns auf Ihre Nachricht",
   "contact.management": "PR Management",
