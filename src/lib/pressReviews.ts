@@ -9,6 +9,13 @@ export interface PressReview {
 export const pressReviews: PressReview[] = [
   {
     quote:
+      "Listen to the broadcast feature on Austria's Ö1 Radio.",
+    source: "Ö1 (ORF)",
+    date: "2026-05-06",
+    url: "https://oe1.orf.at/player/20260506/831632/1778048419933",
+  },
+  {
+    quote:
       "Der Saal war trotz des herrlichen Wetters wieder gut gefüllt und das Publikum wurde mit einem sehr virtuosen und kurzweiligen Konzert belohnt, das erneut die spielerische Qualität des Duos zeigte. [...] Somit lebten das Konzert und die Werke von diesen beiden unterschiedlichen Persönlichkeiten und es wurde immer wieder die unmittelbare Freude und der Drang zu kommunizieren in den Mittelpunkt gestellt.",
     source: "Pizzicato",
     date: "2024-05-06",
