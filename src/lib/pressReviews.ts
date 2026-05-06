@@ -9,6 +9,13 @@ export interface PressReview {
 export const pressReviews: PressReview[] = [
   {
     quote:
+      "Der Saal war trotz des herrlichen Wetters wieder gut gefüllt und das Publikum wurde mit einem sehr virtuosen und kurzweiligen Konzert belohnt, das erneut die spielerische Qualität des Duos zeigte. [...] Somit lebten das Konzert und die Werke von diesen beiden unterschiedlichen Persönlichkeiten und es wurde immer wieder die unmittelbare Freude und der Drang zu kommunizieren in den Mittelpunkt gestellt.",
+    source: "Pizzicato",
+    date: "2024-05-06",
+    url: "https://www.pizzicato.lu/94884-2/",
+  },
+  {
+    quote:
       "She plays with her pianist with musical charm and vigor. This is more than just worth listening to.",
     source: "Feuilletonscout",
     date: "2024-04-09",
